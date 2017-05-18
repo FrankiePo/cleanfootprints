@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+.text-primary {
+  color: #00B3A1 !important;
+}
+.btn-primary {
+  color: white;
+  background-color: #00B3A1;
+  border-color: #00B3A1;
+}

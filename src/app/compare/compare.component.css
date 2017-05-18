@@ -1,0 +1,20 @@
+.cmp-item {
+  color: white;
+  background-position: center;
+  background-size: cover;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  /*TODO: transform*/
+  /*transform: skewX(10deg);*/
+}
+.cmp-item h3 {
+  margin-bottom: 50px;
+}
+.cmp-item_company {
+  /*box-sizing: content-box;*/
+  background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('/assets/img/cmp_company.jpg');
+}
+.cmp-item_active-sitizen {
+  /*box-sizing: content-box;*/
+  background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('/assets/img/cmp_sitizen.jpg');
+}

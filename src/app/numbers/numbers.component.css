@@ -1,0 +1,13 @@
+.numbers__background {
+  padding-top: 50px;
+  background-position: center;
+  background-size: cover;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/assets/img/bar_home.jpg');
+}
+.numbers__content {
+  color: white;
+  padding: 50px 0;
+}
+.numbers__content h2 {
+  font-size: 90px;
+}
