@@ -12,6 +12,8 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { NumbersComponent } from './numbers/numbers.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './pages/home/home.component';
+import { AboutComponent } from './pages/about/about.component';
+import { ProjectsComponent } from './pages/projects/projects.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { HomeComponent } from './pages/home/home.component';
     CompareComponent,
     AboutUsComponent,
     NumbersComponent,
-    HomeComponent
+    HomeComponent,
+    AboutComponent,
+    ProjectsComponent
   ],
   imports: [
     BrowserModule,
