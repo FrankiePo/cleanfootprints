@@ -5,12 +5,12 @@
         <div class="text-md-left">
           <h3>Компаниям</h3>
           <p>Оставьте ваш e-mail и мы пришлём вам информацию о том, как вы можете посчитать и снизить свой след</p>
-          <form>
+          <form novalidate (ngSubmit)="onSubmit(emailForm)" [formGroup]="emailForm">
             <div class="input-group">
-              <input class="form-control" type="text" placeholder="Имя"/>
+              <input class="form-control" type="text" placeholder="Имя" formControlName="name"/>
             </div>
             <div class="input-group">
-              <input class="form-control" type="text" placeholder="E-mail"/>
+              <input class="form-control" type="text" placeholder="E-mail" formControlName="email"/>
             </div>
             <div class="input-group">
               <input type="submit" class="btn btn-primary" value="Submit Button">
