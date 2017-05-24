@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
@@ -10,6 +10,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { CompareComponent } from './compare/compare.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { NumbersComponent } from './numbers/numbers.component';
+import { AppRoutingModule } from './app-routing.module';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
   declarations: [
@@ -18,13 +20,15 @@ import { NumbersComponent } from './numbers/numbers.component';
     NavBarComponent,
     CompareComponent,
     AboutUsComponent,
-    NumbersComponent
+    NumbersComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
+    ReactiveFormsModule,
     HttpModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
