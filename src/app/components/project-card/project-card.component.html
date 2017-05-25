@@ -1,0 +1,17 @@
+<div class="card project__background">
+  <div class="card-block">
+    <h4 class="card-title">Переработка Тетрапак на бумфабрике в Боровичах</h4>
+    <p class="card-text">50 тонн/месяц уже перерабатывается</p>
+    <p class="card-text">6 рублей/кг стоит переработка упаковки Тетрапак</p>
+
+
+    <form [formGroup]="projectForm">
+      <button class="btn btn-primary">Поддержать</button>
+      <div ngbRadioGroup name="radioBasic" formControlName="donationType">
+        <label class="btn btn-primary" *ngFor="let type of donationTypes" style="margin-bottom:0;">
+          <input type="radio" [value]="type.value">{{ type.label }}
+        </label>
+      </div>
+    </form>
+  </div>
+</div>
