@@ -2,7 +2,7 @@
   <p>По данным, введенным вами в Калькулятор Чистых Следов, и с учётом предпринятых вами действий, ваш накопленный экологический след такой</p>
   <div class="row">
     <div class="col-md-6">
-      <canvas baseChart width="400px" height="400px"
+      <canvas baseChart width="400px" height="300px"
               [datasets]="wasteGraphData"
               [chartType]='"line"'
               [labels]="wasteGraphLabels">
@@ -15,7 +15,7 @@
               <!--(chartClick)="chartClicked($event)"></canvas>-->
     </div>
     <div class="col-md-6">
-      <canvas baseChart width="400px" height="400"
+      <canvas baseChart width="400px" height="300px"
               [datasets]="wasteGraphData"
               [chartType]='"line"'
               [labels]="wasteGraphLabels">
@@ -25,19 +25,19 @@
   <h2>Основные цифры коротко:</h2>
   <div class="row">
     <div class="col-lg-3 col-sm-6">
-      <h2>400</h2>
+      <h2 class="display-1">400</h2>
       <p>кг/год мусора <br/>вы отправляете на свалку</p>
     </div>
     <div class="col-lg-3 col-sm-6">
-      <h2>15</h2>
+      <h2 class="display-2">15</h2>
       <p>тонн мусора <br/>отправилось на свалку за время вашей жизни</p>
     </div>
     <div class="col-lg-3 col-sm-6">
-      <h2>8</h2>
+      <h2 class="display-3">8</h2>
       <p>тонн выхлопов СО2 в год <br/>выделяется в результате вашей жизнедеятельности</p>
     </div>
     <div class="col-lg-3 col-sm-6">
-      <h2>35</h2>
+      <h2 class="display-4">35</h2>
       <p>тонн выхлопов СО2 <br/>уже было выделено за время вашей жизни</p>
     </div>
   </div>
@@ -54,20 +54,14 @@
   <p>Взгляните, как меняется ваш след с учетом регулярного вклада в проект Переработка Тетрапак на бумфабрике в Боровичах</p>
   <div class="row">
     <div class="col-md-6">
-      <canvas baseChart width="400px" height="200px"
+      <canvas baseChart width="400px" height="300px"
               [datasets]="wasteGraphData"
               [chartType]='"line"'
               [labels]="wasteGraphLabels">
       </canvas>
-
-      <!--[options]="lineChartOptions"-->
-      <!--[colors]="lineChartColors"-->
-      <!--[legend]="lineChartLegend"-->
-      <!--(chartHover)="chartHovered($event)"-->
-      <!--(chartClick)="chartClicked($event)"></canvas>-->
     </div>
     <div class="col-md-6">
-      <canvas baseChart width="400px" height="200px"
+      <canvas baseChart width="400px" height="300px"
               [datasets]="wasteGraphData"
               [chartType]='"line"'
               [labels]="wasteGraphLabels">

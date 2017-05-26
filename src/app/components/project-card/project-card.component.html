@@ -1,4 +1,4 @@
-<div class="card project__background" [style.background-image]="setBackground(project)">
+<div class="card project__background" [style.background-image]="setBackground(project)" style="height: 100%;">
   <div class="card-block">
     <h4 class="card-title" [innerText]="project.title"></h4>
     <p class="card-text" *ngFor="let projDescription of project.description" [innerHTML]="projDescription"></p>
