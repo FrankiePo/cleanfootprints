@@ -22,7 +22,7 @@
       </canvas>
     </div>
   </div>
-  <h4>Основные цифры коротко:</h4>
+  <h2>Основные цифры коротко:</h2>
   <div class="row">
     <div class="col-lg-3 col-sm-6">
       <h2>400</h2>
@@ -51,4 +51,38 @@
       <app-project-card [project]="proj"></app-project-card>
     </div>
   </div>
+  <p>Взгляните, как меняется ваш след с учетом регулярного вклада в проект Переработка Тетрапак на бумфабрике в Боровичах</p>
+  <div class="row">
+    <div class="col-md-6">
+      <canvas baseChart width="400px" height="200px"
+              [datasets]="wasteGraphData"
+              [chartType]='"line"'
+              [labels]="wasteGraphLabels">
+      </canvas>
+
+      <!--[options]="lineChartOptions"-->
+      <!--[colors]="lineChartColors"-->
+      <!--[legend]="lineChartLegend"-->
+      <!--(chartHover)="chartHovered($event)"-->
+      <!--(chartClick)="chartClicked($event)"></canvas>-->
+    </div>
+    <div class="col-md-6">
+      <canvas baseChart width="400px" height="200px"
+              [datasets]="wasteGraphData"
+              [chartType]='"line"'
+              [labels]="wasteGraphLabels">
+      </canvas>
+    </div>
+  </div>
+  <h2>Подпишитесь на снижение экологического следа!</h2>
+  <div class="row">
+    <div class="col-md-6 offset-md-6">
+      <ul class="list-unstyled">
+        <li>Помогайте окружающей среде в один клик!</li>
+        <li>Получайте на e-mail отчеты об осуществленной переработке!</li>
+        <li>Раз в год получайте от нас по почте бумажный благодарственный сертификат, подтверждающий ваш положительный вклад!</li>
+      </ul>
+    </div>
+  </div>
+
 </div>
