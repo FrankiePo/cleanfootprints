@@ -1,9 +1,7 @@
-<div class="card project__background">
+<div class="card project__background" [style.background-image]="setBackground(project)">
   <div class="card-block">
-    <h4 class="card-title">Переработка Тетрапак на бумфабрике в Боровичах</h4>
-    <p class="card-text">50 тонн/месяц уже перерабатывается</p>
-    <p class="card-text">6 рублей/кг стоит переработка упаковки Тетрапак</p>
-
+    <h4 class="card-title" [innerText]="project.title"></h4>
+    <p class="card-text" *ngFor="let projDescription of project.description" [innerHTML]="projDescription"></p>
 
     <form [formGroup]="projectForm">
       <button class="btn btn-primary">Поддержать</button>

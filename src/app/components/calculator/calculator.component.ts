@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IProject } from '../../shared/models/iproject';
 
 @Component({
   selector: 'app-calculator',
@@ -8,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class CalculatorComponent implements OnInit {
   wasteGraphData: Array<any>;
   wasteGraphLabels: Array<any>;
+  projects: Array<IProject>;
   constructor() {
     const rawData = {
       plastic: {
@@ -125,7 +127,24 @@ export class CalculatorComponent implements OnInit {
       };
     });
     this.wasteGraphLabels = Object.keys(rawData.plastic);
-    console.log(this.wasteGraphData);
+
+    this.projects = [
+      {
+        title: 'Переработка Тетрапак на бумфабрике в Боровичах',
+        description: [
+          '50 тонн/месяц <br/>уже перерабатывается',
+          '6 рублей/кг <br/>стоит переработка упаковки Тетрапак'
+        ],
+        image: './assets/img/pack_borov.jpg'
+      }, {
+        title: 'Раздельный сбор пластика в Москве и МО',
+        description: [
+          '24 тонны <br/>уже собрано и переработано',
+          '12 тыс рублей <br/>стоимость 1 контейнера <br/>Каждый контейнер собирает 600 кг в год'
+        ],
+        image: './assets/img/pack_borov.jpg'
+      }
+    ];
   }
 
   ngOnInit() {

@@ -47,11 +47,8 @@
     Кроме того, вы можете снизить его, поддержав один из следующих проектов
   </p>
   <div class="row">
-    <div class="col-md-6">
-      <app-project-card></app-project-card>
-    </div>
-    <div class="col-md-6">
-      <app-project-card></app-project-card>
+    <div class="col-md-6" *ngFor="let proj of projects">
+      <app-project-card [project]="proj"></app-project-card>
     </div>
   </div>
 </div>
