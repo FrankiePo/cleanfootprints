@@ -2,10 +2,11 @@
   <div class="card-block">
     <h4 class="card-title" [innerText]="project.title"></h4>
     <p class="card-text" *ngFor="let projDescription of project.description" [innerHTML]="projDescription"></p>
-
+  </div>
+  <div class="card-footer border-0" style="background-color: transparent">
     <form [formGroup]="projectForm">
-      <button class="btn btn-primary" style="margin-bottom: 15px;">Поддержать</button>
-      <div ngbRadioGroup name="radioBasic" formControlName="donationType" class="float-lg-right">
+      <button class="btn btn-primary" style="margin-bottom: 8px;">Поддержать</button>
+      <div ngbRadioGroup name="radioBasic" formControlName="donationType" class="float-sm-right float-md-none float-lg-right">
         <label class="btn btn-primary" *ngFor="let type of donationTypes">
           <input type="radio" [value]="type.value">{{ type.label }}
         </label>
