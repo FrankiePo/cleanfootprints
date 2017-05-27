@@ -64,6 +64,9 @@ cache:
 
 script:
   - ng lint
+  - ng build -prod -aot --base-href=\/
+#  TODO:
+#  - npm deploy
 #  - ./scripts/ci/build.sh
 #  - ./scripts/ci/test.sh
 #  # deploy is part of 'script' and not 'after_success' so that we fail the build if the deployment fails
