@@ -21,13 +21,11 @@ node_js:
 #  except:
 #    - g3
 
-#cache:
+cache:
 #  yarn: true
-#  directories:
-#     - ./node_modules
-#     - ./.chrome/chromium
-#     - ./aio/node_modules
-#
+  directories:
+     - ./node_modules
+
 #env:
 #  global:
 #    # GITHUB_TOKEN_ANGULAR=<github token, a personal access token of the angular-builds account, account access in valentine>
