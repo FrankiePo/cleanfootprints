@@ -4,9 +4,9 @@
     <p class="card-text" *ngFor="let projDescription of project.description" [innerHTML]="projDescription"></p>
 
     <form [formGroup]="projectForm">
-      <button class="btn btn-primary">Поддержать</button>
-      <div ngbRadioGroup name="radioBasic" formControlName="donationType">
-        <label class="btn btn-primary" *ngFor="let type of donationTypes" style="margin-bottom:0;">
+      <button class="btn btn-primary" style="margin-bottom: 15px;">Поддержать</button>
+      <div ngbRadioGroup name="radioBasic" formControlName="donationType" class="float-lg-right">
+        <label class="btn btn-primary" *ngFor="let type of donationTypes">
           <input type="radio" [value]="type.value">{{ type.label }}
         </label>
       </div>
