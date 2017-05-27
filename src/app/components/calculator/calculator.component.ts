@@ -148,7 +148,7 @@ export class CalculatorComponent implements OnInit {
           '<strong>24 тонны</strong> <br/>уже собрано и переработано',
           '<strong>12 тыс рублей</strong> <br/>стоимость 1 контейнера <br/>Каждый контейнер собирает 600 кг в год'
         ],
-        image: './assets/img/pack_borov.jpg'
+        image: './assets/img/chistoe_delo.jpg'
       }
     ];
   }
