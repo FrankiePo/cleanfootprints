@@ -10,6 +10,12 @@ export class CalculatorComponent implements OnInit {
   wasteGraphData: Array<any>;
   wasteGraphLabels: Array<any>;
   projects: Array<IProject>;
+  options = {
+    title: {
+      display: true,
+      text: 'Суммарная масса попавших на свалку отходов (кг)'
+    }
+  };
   constructor() {
     const rawData = {
       plastic: {
