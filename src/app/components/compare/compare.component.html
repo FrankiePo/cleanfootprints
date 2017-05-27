@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-6 cmp-item cmp-item_company">
       <div class="container">
-        <div class="text-md-left">
+        <div class="text-md-left cmp-item__content">
           <h3>Компаниям</h3>
           <p>Оставьте ваш e-mail и мы пришлём вам информацию о том, как вы можете посчитать и снизить свой след</p>
           <form novalidate (ngSubmit)="onSubmit(emailForm)" [formGroup]="emailForm">
@@ -13,7 +13,7 @@
               <input class="form-control" type="text" placeholder="E-mail" formControlName="email"/>
             </div>
             <div class="input-group">
-              <input type="submit" class="btn btn-primary" value="Submit Button">
+              <input type="submit" class="btn btn-primary" value="Отправить">
             </div>
           </form>
         </div>
@@ -21,7 +21,7 @@
     </div>
     <div class="col-md-6 cmp-item cmp-item_active-sitizen">
       <div class="container">
-        <div class="text-md-right">
+        <div class="text-md-right cmp-item__content">
           <h3>Активным жителям</h3>
           <p>Рассчитайте свой след через Калькулятор Чистых Следов и узнайте, как вы можете уменьшить ваше влияние на окружающую среду</p>
           <button class="btn btn-primary">Открыть калькулятор</button>
