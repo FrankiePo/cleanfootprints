@@ -8,12 +8,18 @@ cache:
 script:
   - ng lint
   - ng build -prod -aot --base-href=\/
+before_deploy:
+  - tar -zcvf build.tar.gz dist
+  - zip -r build.zip dist/
+after_deploy:
+  - ls
 deploy:
   provider: releases
   api_key:
     secure: WWYvtxhVkWnc4wcJ4uYY09hKvm9LX1t/YVzZ8MZsjzLLvc7QH+mjDK7NkfAXHwkNU0IH8xjjdmkqeFuh51dpfGG4hE6IW4rmoyNAN0zKf6/AXuSvykiGXY4F1+TA1Sze66i9ONjq9n5X1+epLG/pKMw1OSBX7gymCf0xsEoGe382fq1jDosCQ0M5qJLenc/ZCg2wRM95L1tTy0toWMM9u1M/iS9o6zBZGnfhMkWqME/HU6TIWAL92SZRfcGwOfu0AjBwY4sTbJnRtAO+1EeHfpRAj1JLHaNSa7bgP8CTfyAox+aYSk9N4EumYmVNThP37ExZw5IAVusJmQnyhMhUTw3xgapmo7483N0Tjx1eMMwJGUwKP6OYs8f6XzICluEO9tqOrLDnhuv2JgRYfr6juZh0AE34v4cCSPMFZ9I96mm9LlhBXEQZt5rmft2YBQ2Jm1czfqEVLYSfPoudPcZBV7pBRLEHjBwKGru1ijoqLAXax1NqVVp2C+WzHGZVfV+eDn6+HDP/YBZrEm/WYfdti7yhOVXGnl5wKqTTurMyNgOUPmprvLDGeL/pl76SgEtT3cwX5CpWfhu0XPlZziKCw6OvMN94+9QYW5B3NoERqlf5m6bI7RW2XdHlZefizqGNHSI/xoPdBESJv/CLa7TmaCqp2H0quYzpnWHtTwm0bhU=
+  skip_cleanup: true
   file_glob: true
-  file: dist/*
+  file: "./build.*"
   on:
     tags: true
 #    repo: FrankiePo/cleanfootprints
