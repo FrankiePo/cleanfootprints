@@ -126,12 +126,10 @@ export class CalculatorComponent implements OnInit {
       food_debris: 'Пищевые отходы',
       sum: 'Итого'
     };
-    this.wasteGraphData = Object.keys(rawData).map(key => {
-      return {
-        data: Object.keys(rawData[key]).map(k => rawData[key][k]),
-        label: wasteTypes[key]
-      };
-    });
+    this.wasteGraphData = Object.keys(rawData).map(key => ({
+      data: Object.keys(rawData[key]).map(k => rawData[key][k]),
+      label: wasteTypes[key]
+    }));
     this.wasteGraphLabels = Object.keys(rawData.plastic);
 
     this.projects = [
