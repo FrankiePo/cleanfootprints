@@ -1,6 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import "bootstrap-theme";
+$content-padding: 50px;
 .content {
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-top: $content-padding;
+  padding-bottom: $content-padding;
+}
+.content + .content {
+  padding-top: 0;
 }
