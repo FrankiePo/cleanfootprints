@@ -19,6 +19,7 @@ import { CleanFootprintComponent } from './components/clean-footprint/clean-foot
 import { CalculatorComponent } from './components/calculator/calculator.component';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { ProjectCardComponent } from './components/project-card/project-card.component';
+import { GraphService } from './shared/models/graph/graph.service';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,7 @@ import { ProjectCardComponent } from './components/project-card/project-card.com
     AppRoutingModule,
     ChartsModule
   ],
-  providers: [],
+  providers: [GraphService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
