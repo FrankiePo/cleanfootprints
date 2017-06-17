@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.org/FrankiePo/cleanfootprints.svg?branch=master)](https://travis-ci.org/FrankiePo/cleanfootprints)
+[![Dependency Status](https://img.shields.io/david/FrankiePo/cleanfootprints.svg?style=flat-square)](https://david-dm.org/FrankiePo/cleanfootprints)
+[![devDependency Status](https://img.shields.io/david/dev/FrankiePo/cleanfootprints.svg?style=flat-square)](https://david-dm.org/FrankiePo/cleanfootprints#info=devDependencies)
 
 # CleanFootPrint
 
