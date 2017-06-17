@@ -44,7 +44,7 @@ export class GraphService {
         label: wasteTypes[key],
         data: Object
           .keys(body.sum_charts[key])
-          .map(k => ({x: +k, y: body.sum_charts[key][k]}))
+          .map(k => ({x: +k, y: Math.floor(body.sum_charts[key][k])}))
           .filter((item, index) => !(index % 5)),
       }));
     const labels = Object
