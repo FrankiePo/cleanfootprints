@@ -20,6 +20,8 @@ import { CalculatorComponent } from './components/calculator/calculator.componen
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { ProjectCardComponent } from './components/project-card/project-card.component';
 import { GraphService } from './shared/models/graph/graph.service';
+import { SignUpComponent } from './pages/sign-up/sign-up.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { GraphService } from './shared/models/graph/graph.service';
     AccountComponent,
     CleanFootprintComponent,
     CalculatorComponent,
-    ProjectCardComponent
+    ProjectCardComponent,
+    SignUpComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

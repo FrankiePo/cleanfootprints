@@ -4,6 +4,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { ProjectsComponent } from './pages/projects/projects.component';
 import { AboutComponent } from './pages/about/about.component';
 import { AccountComponent } from 'app/pages/account/account.component';
+import { SignUpComponent } from './pages/sign-up/sign-up.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,16 @@ const routes: Routes = [
   },
   {
     path: 'about',
+    component: AboutComponent,
+    // canActivate: [AuthGuard],
+  },
+  {
+    path: 'signup',
+    component: SignUpComponent,
+    // canActivate: [AuthGuard],
+  },
+  {
+    path: 'login',
     component: AboutComponent,
     // canActivate: [AuthGuard],
   },
