@@ -3,38 +3,38 @@
     <div class="col-md-8 col-xl-6">
       <div class="text-md-left">
         <h1 style="margin-bottom: 2rem;">Регистрация</h1>
-        <form novalidate (ngSubmit)="onSubmit(registerForm)" [formGroup]="registerForm">
-          <div class="form-group" [ngClass]="formGroupClass(registerForm, 'name')">
+        <form novalidate (ngSubmit)="onSubmit(loginForm)" [formGroup]="loginForm">
+          <div class="form-group" [ngClass]="formGroupClass(loginForm, 'name')">
             <input
               class="form-control"
-              [ngClass]="inputClass(registerForm, 'name')"
+              [ngClass]="inputClass(loginForm, 'name')"
               type="text"
               placeholder="Имя"
               formControlName="name"/>
           </div>
-          <div class="form-group" [ngClass]="formGroupClass(registerForm, 'email')">
+          <div class="form-group" [ngClass]="formGroupClass(loginForm, 'email')">
             <input
               class="form-control"
-              [ngClass]="inputClass(registerForm, 'email')"
+              [ngClass]="inputClass(loginForm, 'email')"
               type="text"
               placeholder="Email"
               formControlName="email"/>
             <small
               class="form-control-feedback"
-              [hidden]="registerForm.get('email').valid || (registerForm.get('email').pristine && !registerForm.submitted)">
+              [hidden]="loginForm.get('email').valid || (loginForm.get('email').pristine)">
               Некорректный Email
             </small>
           </div>
-          <div class="form-group" [ngClass]="formGroupClass(registerForm, 'password')">
+          <div class="form-group" [ngClass]="formGroupClass(loginForm, 'password')">
             <input
               class="form-control"
-              [ngClass]="inputClass(registerForm, 'password')"
+              [ngClass]="inputClass(loginForm, 'password')"
               type="password"
               placeholder="Пароль"
               formControlName="password"/>
             <small
               class="form-control-feedback"
-              [hidden]="registerForm.get('password').valid || (registerForm.get('password').pristine && !registerForm.submitted)">
+              [hidden]="loginForm.get('password').valid || (loginForm.get('password').pristine)">
               Пароль должен быть больше 6 символов
             </small>
           </div>

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { equalValidator } from '../../shared/validators/equal.validator';
+import { UserService } from '../../shared/models/user/user.service';
 
 interface IReg {
   name: string;
-  tel: string;
   email: string;
   password: string;
 }
@@ -15,11 +15,11 @@ interface IReg {
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  registerForm: FormGroup;
-  constructor(private formBuilder: FormBuilder) {}
+  loginForm: FormGroup;
+  constructor(private formBuilder: FormBuilder, public userService: UserService) {}
 
   ngOnInit() {
-    this.registerForm = this.formBuilder.group({
+    this.loginForm = this.formBuilder.group({
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit {
     // }, {
     //   validator: equalValidator('password', 'checkPass')
     });
-    this.registerForm.statusChanges.subscribe(val => console.log(this.registerForm.errors));
+    this.loginForm.statusChanges.subscribe(val => console.log(this.loginForm.errors));
   }
   inputClass(form: FormGroup, field: string): any {
     const formField = form.get(field);
@@ -48,5 +48,9 @@ export class RegisterComponent implements OnInit {
   }
   onSubmit({ value, valid }: { value: IReg, valid: boolean }) {
     console.log(value, valid);
+    if (valid) {
+      const { name, email, password } = value;
+      this.userService.signUp(name, email, password).subscribe(res => console.log('sub', res));
+    }
   }
 }
