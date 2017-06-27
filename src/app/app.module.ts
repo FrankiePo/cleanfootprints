@@ -22,6 +22,7 @@ import { ProjectCardComponent } from './components/project-card/project-card.com
 import { GraphService } from './shared/models/graph/graph.service';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
 import { UserService } from './shared/models/user/user.service';
 
 export function cookieStrategy() {
@@ -45,6 +46,7 @@ export function cookieStrategy() {
     ProjectCardComponent,
     SignUpComponent,
     RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

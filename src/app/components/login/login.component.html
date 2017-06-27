@@ -1,0 +1,40 @@
+<div class="container content">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-xl-6">
+      <div class="text-md-left">
+        <h1 style="margin-bottom: 2rem;">Войти</h1>
+        <form novalidate (ngSubmit)="onSubmit(loginForm)" [formGroup]="loginForm">
+          <div class="form-group" [ngClass]="formGroupClass(loginForm, 'email')">
+            <input
+              class="form-control"
+              [ngClass]="inputClass(loginForm, 'email')"
+              type="text"
+              placeholder="Email"
+              formControlName="email"/>
+            <small
+              class="form-control-feedback"
+              [hidden]="loginForm.get('email').valid || (loginForm.get('email').pristine)">
+              Некорректный Email
+            </small>
+          </div>
+          <div class="form-group" [ngClass]="formGroupClass(loginForm, 'password')">
+            <input
+              class="form-control"
+              [ngClass]="inputClass(loginForm, 'password')"
+              type="password"
+              placeholder="Пароль"
+              formControlName="password"/>
+            <small
+              class="form-control-feedback"
+              [hidden]="loginForm.get('password').valid || (loginForm.get('password').pristine)">
+              Пароль должен быть больше 6 символов
+            </small>
+          </div>
+          <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Войти">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
