@@ -11,6 +11,11 @@
               type="text"
               placeholder="Имя"
               formControlName="name"/>
+            <small
+              class="form-control-feedback"
+              [hidden]="loginForm.get('name').valid || (loginForm.get('name').pristine)">
+              Введите имя
+            </small>
           </div>
           <div class="form-group" [ngClass]="formGroupClass(loginForm, 'email')">
             <input
