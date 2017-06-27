@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { CookieXSRFStrategy, HttpModule, XSRFStrategy } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -22,6 +22,12 @@ import { ProjectCardComponent } from './components/project-card/project-card.com
 import { GraphService } from './shared/models/graph/graph.service';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { RegisterComponent } from './components/register/register.component';
+import { UserService } from './shared/models/user/user.service';
+import { CookieModule } from 'ngx-cookie';
+
+export function cookieStrategy() {
+  return new CookieXSRFStrategy('csrftoken', 'X-CSRFToken');
+}
 
 @NgModule({
   declarations: [
@@ -39,7 +45,7 @@ import { RegisterComponent } from './components/register/register.component';
     CalculatorComponent,
     ProjectCardComponent,
     SignUpComponent,
-    RegisterComponent
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,9 +53,14 @@ import { RegisterComponent } from './components/register/register.component';
     HttpModule,
     NgbModule.forRoot(),
     AppRoutingModule,
-    ChartsModule
+    ChartsModule,
+    CookieModule.forRoot()
   ],
-  providers: [GraphService],
+  providers: [
+    { provide: XSRFStrategy, useFactory: cookieStrategy },
+    GraphService,
+    UserService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
