@@ -6,13 +6,13 @@
           <h3>Компаниям</h3>
           <p>Оставьте ваш e-mail и мы пришлём вам информацию о том, как вы можете посчитать и снизить свой след</p>
           <form novalidate (ngSubmit)="onSubmit(emailForm)" [formGroup]="emailForm">
-            <div class="input-group">
+            <div class="form-group">
               <input class="form-control" type="text" placeholder="Имя" formControlName="name"/>
             </div>
-            <div class="input-group">
+            <div class="form-group">
               <input class="form-control" type="text" placeholder="E-mail" formControlName="email"/>
             </div>
-            <div class="input-group">
+            <div class="form-group">
               <input type="submit" class="btn btn-primary" value="Отправить">
             </div>
           </form>
