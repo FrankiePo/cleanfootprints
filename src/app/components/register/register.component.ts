@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { equalValidator } from '../../shared/validators/equal.validator';
 
 interface IReg {
   name: string;
@@ -20,10 +21,16 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
       name: ['', [Validators.required]],
-      tel: ['', [Validators.required, Validators.minLength(10)]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    //   checkPass: ['', [
+    //     Validators.required,
+    //     Validators.minLength(6)
+    //   ]],
+    // }, {
+    //   validator: equalValidator('password', 'checkPass')
     });
+    this.registerForm.statusChanges.subscribe(val => console.log(this.registerForm.errors));
   }
   inputClass(form: FormGroup, field: string): any {
     const formField = form.get(field);

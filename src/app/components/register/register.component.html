@@ -2,21 +2,41 @@
   <div class="row justify-content-center">
     <div class="col-md-8 col-xl-6">
       <div class="text-md-left">
-        <h1>Регистрация</h1>
+        <h1 style="margin-bottom: 2rem;">Регистрация</h1>
         <form novalidate (ngSubmit)="onSubmit(registerForm)" [formGroup]="registerForm">
           <div class="form-group" [ngClass]="formGroupClass(registerForm, 'name')">
-            <input class="form-control" [ngClass]="inputClass(registerForm, 'name')" type="text" placeholder="Имя" formControlName="name"/>
+            <input
+              class="form-control"
+              [ngClass]="inputClass(registerForm, 'name')"
+              type="text"
+              placeholder="Имя"
+              formControlName="name"/>
           </div>
           <div class="form-group" [ngClass]="formGroupClass(registerForm, 'email')">
-            <input class="form-control" [ngClass]="inputClass(registerForm, 'email')" type="text" placeholder="E-mail" formControlName="email"/>
-            <!--<div class="form-control-feedback">Shucks, check the formatting of that and try again.</div>-->
-            <!--<small class="form-text text-muted">Example help text that remains unchanged.</small>-->
-          </div>
-          <div class="form-group" [ngClass]="formGroupClass(registerForm, 'tel')">
-            <input class="form-control" [ngClass]="inputClass(registerForm, 'tel')" type="number" placeholder="Телефон" formControlName="tel"/>
+            <input
+              class="form-control"
+              [ngClass]="inputClass(registerForm, 'email')"
+              type="text"
+              placeholder="Email"
+              formControlName="email"/>
+            <small
+              class="form-control-feedback"
+              [hidden]="registerForm.get('email').valid || (registerForm.get('email').pristine && !registerForm.submitted)">
+              Некорректный Email
+            </small>
           </div>
           <div class="form-group" [ngClass]="formGroupClass(registerForm, 'password')">
-            <input class="form-control" [ngClass]="inputClass(registerForm, 'password')" type="password" placeholder="Пароль" formControlName="password"/>
+            <input
+              class="form-control"
+              [ngClass]="inputClass(registerForm, 'password')"
+              type="password"
+              placeholder="Пароль"
+              formControlName="password"/>
+            <small
+              class="form-control-feedback"
+              [hidden]="registerForm.get('password').valid || (registerForm.get('password').pristine && !registerForm.submitted)">
+              Пароль должен быть больше 6 символов
+            </small>
           </div>
           <div class="form-group">
             <input type="submit" class="btn btn-primary" value="Зарегистрировать">
