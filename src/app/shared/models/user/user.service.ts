@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { environment } from '../../../../environments/environment';
 import 'rxjs/add/operator/catch';
-import { CookieService } from 'ngx-cookie';
 
 @Injectable()
 export class UserService {
@@ -11,7 +10,7 @@ export class UserService {
   private headers = new Headers({
     'Content-Type': 'application/json',
   });
-  constructor(private http: Http, private cookies: CookieService) {
+  constructor(private http: Http) {
     // this.loggedIn = !!localStorage.getItem('auth_token');
   }
 
@@ -36,7 +35,6 @@ export class UserService {
   signUp(name, email, password) {
     const url = `https://cleanfootprint.org/accounts/signup/`;
     const body = JSON.stringify({ email, password });
-    this.headers.set('X-CSRFToken', this.cookies.get('csrftoken'));
     const options = new RequestOptions({
       headers: this.headers,
       withCredentials: true,

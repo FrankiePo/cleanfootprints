@@ -23,7 +23,6 @@ import { GraphService } from './shared/models/graph/graph.service';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { RegisterComponent } from './components/register/register.component';
 import { UserService } from './shared/models/user/user.service';
-import { CookieModule } from 'ngx-cookie';
 
 export function cookieStrategy() {
   return new CookieXSRFStrategy('csrftoken', 'X-CSRFToken');
@@ -54,7 +53,6 @@ export function cookieStrategy() {
     NgbModule.forRoot(),
     AppRoutingModule,
     ChartsModule,
-    CookieModule.forRoot()
   ],
   providers: [
     { provide: XSRFStrategy, useFactory: cookieStrategy },
