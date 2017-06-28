@@ -9,6 +9,7 @@ export class UserService {
   private authUrl = `https://cleanfootprint.org/accounts`;
   private headers = new Headers({
     'Content-Type': 'application/json',
+    'X-Requested-With': 'XMLHttpRequest',
   });
   constructor(private http: Http) {
     // this.loggedIn = !!localStorage.getItem('auth_token');
