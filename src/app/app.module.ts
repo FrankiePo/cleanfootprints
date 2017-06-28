@@ -24,6 +24,7 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserService } from './shared/models/user/user.service';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
 
 export function cookieStrategy() {
   return new CookieXSRFStrategy('csrftoken', 'X-CSRFToken');
@@ -46,7 +47,8 @@ export function cookieStrategy() {
     ProjectCardComponent,
     SignUpComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    LoginPageComponent
   ],
   imports: [
     BrowserModule,
