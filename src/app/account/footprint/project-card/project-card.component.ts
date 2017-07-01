@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { IProject } from '../../shared/models/iproject';
+import { IProject } from '../../../shared/models/iproject';
 
 @Component({
   selector: 'app-project-card',

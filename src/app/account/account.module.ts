@@ -9,7 +9,7 @@ import { HistoryComponent } from './history/history.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ChartsModule } from 'ng2-charts';
-import { ProjectCardComponent } from './project-card/project-card.component';
+import { ProjectCardComponent } from './footprint/project-card/project-card.component';
 
 @NgModule({
   imports: [
