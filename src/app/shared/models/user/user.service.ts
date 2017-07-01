@@ -2,52 +2,69 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { environment } from '../../../../environments/environment';
 import 'rxjs/add/operator/catch';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class UserService {
   private loggedIn = false;
   private authUrl = `https://cleanfootprint.org/accounts`;
-  private headers = new Headers({
-    'Content-Type': 'application/json',
-    'X-Requested-With': 'XMLHttpRequest',
+  private requestOptions = new RequestOptions({
+    headers: new Headers({
+      'Content-Type': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest',
+    }),
+    withCredentials: true,
   });
   constructor(private http: Http) {
-    // this.loggedIn = !!localStorage.getItem('auth_token');
+    this.getState().subscribe(status => this.loggedIn = status);
   }
 
-  login(email, password) {
-    // const headers = new Headers();
-    // headers.append('Content-Type', 'application/json');
-
-    return this.http;
+  getState(): Observable<boolean> {
+    return this.http.get(`${environment.apiUrl}user/get_state/`)
+      .map(res => res.json() as { is_authenticated: boolean })
+      .map(res => res.is_authenticated)
   }
 
-  logout() {
-    localStorage.removeItem('auth_token');
-    this.loggedIn = false;
+  login(email, password): Observable<any> {
+    const url = `${this.authUrl}/login/`;
+    const body = JSON.stringify({ email, password });
+    const options = this.requestOptions;
+    return this.http.post(url, body, options)
+      .map(res => res.json())
+      .map(res => {
+        console.log(res);
+        return res;
+      })
+      .catch(err => err);
   }
 
-  isLoggedIn() {
+  logout(): Observable<boolean> {
+    const url = `${this.authUrl}/logout/`;
+    const options = this.requestOptions;
+    return this.http.post(url, null, options)
+      .map(res => res.json())
+      .catch(err => {
+        console.error(err);
+        return err;
+      });
+  }
+
+  isLoggedIn(): boolean {
     return this.loggedIn;
   }
-  getLoginState() {
-    return true;
-  }
-  signUp(name, email, password) {
-    const url = `https://cleanfootprint.org/accounts/signup/`;
-    const body = JSON.stringify({ email, password });
-    const options = new RequestOptions({
-      headers: this.headers,
-      withCredentials: true,
-    });
+
+  signUp(name, email, password1): Observable<boolean | string> {
+    const url = `${this.authUrl}/signup/`;
+    // const body = JSON.stringify({ email, password1 });
+    const body = { email, password1 };
+    const options = this.requestOptions;
     return this.http.post(url, body, options)
       .map(res => res.json())
       .map((res) => {
         console.log('signup', res);
-        // if (res.success) {
-        //   localStorage.setItem('auth_token', res.auth_token);
-        //   this.loggedIn = true;
-        // }
+        if (res.success) {
+          // this.loggedIn = true;
+        }
 
         return res.success;
       })
