@@ -11,16 +11,13 @@ import { IGraph } from '../../shared/models/graph/igraph';
   styleUrls: ['./footprint.component.scss']
 })
 export class FootprintComponent implements OnInit, OnDestroy {
-  projects: Array<IProject>;
+  projects: IProject[];
   subscription: Subscription;
   graphsData: Observable<any>;
   graphs: {
     waste: IGraph
   };
-  constructor(graphService: GraphService) {
-    this.graphsData = graphService.getGraphs({
-      birthdays: [1980]
-    });
+  constructor(private graphService: GraphService) {
     this.projects = [
       {
         title: 'Переработка Тетрапак на бумфабрике в Боровичах',
@@ -41,6 +38,9 @@ export class FootprintComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.graphsData = this.graphService.getGraphs({
+      birthdays: [1980]
+    });
     this.subscription = this.graphsData.subscribe(data => {
       this.graphs = data;
     });
