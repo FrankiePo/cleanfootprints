@@ -13,15 +13,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      //   checkPass: ['', [
-      //     Validators.required,
-      //     Validators.minLength(6)
-      //   ]],
-      // }, {
-      //   validator: equalValidator('password', 'checkPass')
     });
     this.loginForm.statusChanges.subscribe(val => console.log(this.loginForm.errors));
   }
@@ -40,10 +33,11 @@ export class LoginComponent implements OnInit {
     };
   }
   onSubmit({ value, valid }: { value: any, valid: boolean }) {
-    console.log(value, valid);
     if (valid) {
-      const { name, email, password } = value;
-      this.userService.signUp(name, email, password).subscribe(res => console.log('sub', res));
+      const { email, password } = value;
+      this.userService.login(email, password).subscribe(res => {
+        console.log('sub', res);
+      });
     }
   }
 }
