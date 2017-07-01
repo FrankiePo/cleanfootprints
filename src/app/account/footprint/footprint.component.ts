@@ -6,11 +6,11 @@ import { GraphService } from '../../shared/models/graph/graph.service';
 import { IGraph } from '../../shared/models/graph/igraph';
 
 @Component({
-  selector: 'app-calculator',
-  templateUrl: './calculator.component.html',
-  styleUrls: ['./calculator.component.scss']
+  selector: 'app-footprint',
+  templateUrl: './footprint.component.html',
+  styleUrls: ['./footprint.component.scss']
 })
-export class CalculatorComponent implements OnInit, OnDestroy {
+export class FootprintComponent implements OnInit, OnDestroy {
   projects: Array<IProject>;
   subscription: Subscription;
   graphsData: Observable<any>;

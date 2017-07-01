@@ -14,17 +14,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './pages/home/home.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ProjectsComponent } from './pages/projects/projects.component';
-import { AccountComponent } from './pages/account/account.component';
 import { CleanFootprintComponent } from './components/clean-footprint/clean-footprint.component';
-import { CalculatorComponent } from './components/calculator/calculator.component';
-import { ChartsModule } from 'ng2-charts/ng2-charts';
-import { ProjectCardComponent } from './components/project-card/project-card.component';
 import { GraphService } from './shared/models/graph/graph.service';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserService } from './shared/models/user/user.service';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { AccountModule } from './account/account.module';
+import { CalculatorComponent } from './pages/calculator/calculator.component';
 
 export function cookieStrategy() {
   return new CookieXSRFStrategy('csrftoken', 'X-CSRFToken');
@@ -41,22 +39,20 @@ export function cookieStrategy() {
     HomeComponent,
     AboutComponent,
     ProjectsComponent,
-    AccountComponent,
     CleanFootprintComponent,
-    CalculatorComponent,
-    ProjectCardComponent,
     SignUpComponent,
     RegisterComponent,
     LoginComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    CalculatorComponent
   ],
   imports: [
     BrowserModule,
+    AccountModule,
     ReactiveFormsModule,
     HttpModule,
     NgbModule.forRoot(),
     AppRoutingModule,
-    ChartsModule,
   ],
   providers: [
     { provide: XSRFStrategy, useFactory: cookieStrategy },
