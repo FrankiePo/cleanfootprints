@@ -5,6 +5,7 @@ import { ProjectsComponent } from './pages/projects/projects.component';
 import { AboutComponent } from './pages/about/about.component';
 import { AccountComponent } from 'app/pages/account/account.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
 
 const routes: Routes = [
   {
@@ -34,7 +35,7 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: AboutComponent,
+    component: LoginPageComponent,
     // canActivate: [AuthGuard],
   },
   {
