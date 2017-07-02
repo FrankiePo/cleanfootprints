@@ -9,6 +9,7 @@
         <button class="btn btn-link" routerLink="/projects">Проекты</button>
         <button class="btn btn-link" routerLink="/about">О Нас</button>
         <button class="btn btn-link" routerLink="/calculator">Калькулятор</button>
+        <button class="btn btn-link" routerLink="/account">Личный Кабинет</button>
         <button class="btn btn-link" *ngIf="!isLoggedIn()" routerLink="/signup">Регистрация</button>
         <button class="btn btn-link" *ngIf="!isLoggedIn()" routerLink="/login">Войти</button>
         <button class="btn btn-link" *ngIf="isLoggedIn()" (click)="logout()">Выйти</button>
