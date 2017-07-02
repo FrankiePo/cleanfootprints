@@ -7,7 +7,7 @@ import { HistoryComponent } from './history/history.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'account',
     component: AccountComponent,
     children: [
       { path: '', redirectTo: 'footprint', pathMatch: 'full' },
