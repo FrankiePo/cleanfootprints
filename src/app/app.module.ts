@@ -23,6 +23,7 @@ import { UserService } from './shared/models/user/user.service';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { AccountModule } from './account/account.module';
 import { CalculatorComponent } from './pages/calculator/calculator.component';
+import { CalcFormComponent } from './components/calc-form/calc-form.component';
 
 export function cookieStrategy() {
   return new CookieXSRFStrategy('csrftoken', 'X-CSRFToken');
@@ -44,7 +45,8 @@ export function cookieStrategy() {
     RegisterComponent,
     LoginComponent,
     LoginPageComponent,
-    CalculatorComponent
+    CalculatorComponent,
+    CalcFormComponent
   ],
   imports: [
     BrowserModule,
