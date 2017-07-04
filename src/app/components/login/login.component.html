@@ -11,11 +11,6 @@
               type="text"
               placeholder="Email"
               formControlName="email"/>
-            <small
-              class="form-control-feedback"
-              [hidden]="loginForm.get('email').valid || (loginForm.get('email').pristine)">
-              Некорректный Email
-            </small>
           </div>
           <div class="form-group" [ngClass]="formGroupClass(loginForm, 'password')">
             <input
@@ -26,8 +21,8 @@
               formControlName="password"/>
             <small
               class="form-control-feedback"
-              [hidden]="loginForm.get('password').valid || (loginForm.get('password').pristine)">
-              Пароль должен быть больше 6 символов
+              *ngIf="errorData">
+              Неправильный Email или пароль
             </small>
           </div>
           <div class="form-group">
