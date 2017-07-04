@@ -6,12 +6,12 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import { environment } from '../../../../environments/environment';
-import { IUser } from 'app/shared/models/user/iuser';
+import { IUser } from './iuser';
+import { IState } from './istate';
 
 @Injectable()
 export class UserService {
-  private user = new BehaviorSubject(null);
-  private loggedIn = new BehaviorSubject(false);
+  private state: BehaviorSubject<IState>;
   private authUrl = `${environment.apiUrl}user/`;
   private requestOptions = new RequestOptions({
     headers: new Headers({
@@ -22,26 +22,24 @@ export class UserService {
   });
 
   constructor(private http: Http) {
+    this.state = new BehaviorSubject({
+      is_authenticated: false,
+    });
     this.updateState();
   }
 
   private updateState(): Subscription {
     return this.http.get(`${this.authUrl}get_state/`)
-      .map(res => res.json() as { is_authenticated: boolean, user: IUser })
+      .map(res => res.json() as IState)
       .map(res => {
         console.log('(UserService) updateState: ', res);
         return res;
       })
       // .catch(errRes => errRes.json())
-      .subscribe(res => {
-        this.loggedIn.next(res.is_authenticated);
-        if (res.is_authenticated) {
-          this.user.next(res.user);
-        }
-      });
+      .subscribe(res => this.state.next(res));
   }
   getUser(): Observable<IUser> {
-    return this.user.asObservable();
+    return this.state.asObservable().map(state => state.user);
   }
 
   login(email, password): Observable<any> {
@@ -72,7 +70,7 @@ export class UserService {
   }
 
   isLoggedIn(): Observable<boolean> {
-    return this.loggedIn.asObservable();
+    return this.state.asObservable().map(state => state.is_authenticated);
   }
 
   signUp(email, password): Observable<boolean | string> {
