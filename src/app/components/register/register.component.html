@@ -29,6 +29,10 @@
               [hidden]="loginForm.get('email').valid || (loginForm.get('email').pristine)">
               Некорректный Email
             </small>
+            <small *ngIf="errorData && errorData.email"
+              class="form-control-feedback">
+              {{ errorData.email.join(', ') }}
+            </small>
           </div>
           <div class="form-group" [ngClass]="formGroupClass(loginForm, 'password')">
             <input
