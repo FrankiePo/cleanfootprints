@@ -9,10 +9,10 @@
         <button class="btn btn-link" routerLink="/projects">Проекты</button>
         <button class="btn btn-link" routerLink="/about">О Нас</button>
         <button class="btn btn-link" routerLink="/calculator">Калькулятор</button>
-        <button class="btn btn-link" routerLink="/account">Личный Кабинет</button>
-        <button class="btn btn-link" *ngIf="!isLoggedIn()" routerLink="/signup">Регистрация</button>
-        <button class="btn btn-link" *ngIf="!isLoggedIn()" routerLink="/login">Войти</button>
-        <button class="btn btn-link" *ngIf="isLoggedIn()" (click)="logout()">Выйти</button>
+        <button class="btn btn-link" *ngIf="loggedIn" routerLink="/account">Личный Кабинет</button>
+        <button class="btn btn-link" *ngIf="!loggedIn" routerLink="/signup">Регистрация</button>
+        <button class="btn btn-link" *ngIf="!loggedIn" routerLink="/login">Войти</button>
+        <button class="btn btn-link" *ngIf="loggedIn" (click)="logout()">Выйти</button>
       </div>
     </div>
     <a class="navbar-brand" routerLink="/index">
@@ -33,17 +33,17 @@
         <li class="nav-item">
           <a class="nav-link text-white" routerLink="/calculator" routerLinkActive="active">Калькулятор</a>
         </li>
-        <li class="nav-item" *ngIf="true">
+        <li class="nav-item" *ngIf="loggedIn">
           <a class="nav-link text-white" routerLink="/account" routerLinkActive="active">Личный Кабинет</a>
         </li>
-        <li class="nav-item" *ngIf="!isLoggedIn()">
+        <li class="nav-item" *ngIf="!loggedIn">
           <a class="nav-link text-white" routerLink="/signup" routerLinkActive="active">Регистрация</a>
         </li>
-        <li class="nav-item" *ngIf="!isLoggedIn()">
+        <li class="nav-item" *ngIf="!loggedIn">
           <a class="nav-link text-white" routerLink="/login" routerLinkActive="active">Войти</a>
         </li>
-        <li class="nav-item" *ngIf="isLoggedIn()">
-          <a class="nav-link text-white" (click)="logout()">Выйти</a>
+        <li class="nav-item" *ngIf="loggedIn">
+          <a class="nav-link text-white" href="javascript:;" (click)="logout($event)">Выйти</a>
         </li>
       </ul>
     </div>

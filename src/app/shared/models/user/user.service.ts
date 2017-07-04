@@ -23,7 +23,7 @@ export class UserService {
     this.updateState();
   }
 
-  updateState(): Subscription {
+  private updateState(): Subscription {
     return this.http.get(`${this.authUrl}get_state/`)
       .map(res => res.json() as { is_authenticated: boolean })
       .map(res => {
@@ -41,7 +41,7 @@ export class UserService {
     return this.http.post(url, body, options)
       .map(res => res.json())
       .map(res => {
-        console.log(res);
+        this.updateState();
         return res;
       })
       .catch(err => err);
@@ -51,15 +51,18 @@ export class UserService {
     const url = `${this.authUrl}logout/`;
     const options = this.requestOptions;
     return this.http.post(url, null, options)
-      .map(res => res.json())
+      .map(res => {
+        this.updateState();
+        return res.json();
+      })
       .catch(err => {
         console.error(err);
         return err;
       });
   }
 
-  isLoggedIn(): boolean {
-    return this.loggedIn.getValue();
+  isLoggedIn(): Observable<boolean> {
+    return this.loggedIn.asObservable();
   }
 
   signUp(email, password): Observable<boolean | string> {
@@ -69,11 +72,9 @@ export class UserService {
     return this.http.post(url, body, options)
       .map(res => res.json())
       .map((res) => {
-
         if (res.success) {
           this.updateState();
         }
-
         return res.success;
       })
       .catch(err => this.handleError(err));
