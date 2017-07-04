@@ -6,9 +6,11 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import { environment } from '../../../../environments/environment';
+import { IUser } from 'app/shared/models/user/iuser';
 
 @Injectable()
 export class UserService {
+  private user = new BehaviorSubject(null);
   private loggedIn = new BehaviorSubject(false);
   private authUrl = `${environment.apiUrl}user/`;
   private requestOptions = new RequestOptions({
@@ -25,13 +27,21 @@ export class UserService {
 
   private updateState(): Subscription {
     return this.http.get(`${this.authUrl}get_state/`)
-      .map(res => res.json() as { is_authenticated: boolean })
+      .map(res => res.json() as { is_authenticated: boolean, user: IUser })
       .map(res => {
-        console.log(res);
-        return res.is_authenticated;
+        console.log('(UserService) updateState: ', res);
+        return res;
       })
       // .catch(errRes => errRes.json())
-      .subscribe(status => this.loggedIn.next(status));
+      .subscribe(res => {
+        this.loggedIn.next(res.is_authenticated);
+        if (res.is_authenticated) {
+          this.user.next(res.user);
+        }
+      });
+  }
+  getUser(): Observable<IUser> {
+    return this.user.asObservable();
   }
 
   login(email, password): Observable<any> {
