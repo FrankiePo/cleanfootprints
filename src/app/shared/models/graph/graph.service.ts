@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { environment } from '../../../../environments/environment';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import { GraphWasteType } from './graph-waste-type.enum';
+import { GraphWasteType, GraphWasteTypeDefs } from './graph-waste-type.enum';
 import { IGraph } from './igraph';
 
 @Injectable()
@@ -28,20 +28,10 @@ export class GraphService {
     return graphs || { };
   }
   private getWasteGraph(body): IGraph {
-    const wasteTypes = {
-      [GraphWasteType.PLASTIC]: 'Пластик',
-      [GraphWasteType.PAPER]  : 'Макулатура',
-      [GraphWasteType.GLASS]  : 'Стекло',
-      [GraphWasteType.METAL]  : 'Металл',
-      [GraphWasteType.TEXTILE]: 'Текстиль',
-      [GraphWasteType.FOOD]   : 'Пищевые отходы',
-      [GraphWasteType.OTHER]  : 'Другие',
-      [GraphWasteType.TOTAL]  : 'Итого',
-    };
     const datasets = Object
       .keys(body.sum_charts)
       .map(key => ({
-        label: wasteTypes[key],
+        label: GraphWasteTypeDefs[key],
         data: Object
           .keys(body.sum_charts[key])
           .map(k => ({x: +k, y: Math.floor(body.sum_charts[key][k])}))
@@ -66,6 +56,9 @@ export class GraphService {
       }
     };
     return { datasets, labels, options };
+  }
+  private serialize() {
+
   }
   private handleError (error: Response | any) {
     let errMsg: string;
