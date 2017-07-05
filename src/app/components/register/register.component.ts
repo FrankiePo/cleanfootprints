@@ -5,6 +5,7 @@ import {
 } from '@angular/forms';
 import { equalValidator } from '../../shared/validators/equal.validator';
 import { UserService } from '../../shared/models/user/user.service';
+import { Router } from '@angular/router';
 
 interface IReg {
   name: string;
@@ -24,7 +25,11 @@ export class RegisterComponent implements OnInit {
     email?: string[],
     password?: string[],
   };
-  constructor(private formBuilder: FormBuilder, public userService: UserService) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    public userService: UserService,
+    private router: Router,
+  ) {}
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -79,7 +84,8 @@ export class RegisterComponent implements OnInit {
       const { email, password } = value;
       this.userService.signUp(email, password).subscribe(
         successData => {
-          console.log('(onSubmit) success:', successData)
+          console.log('(onSubmit) success:', successData);
+          this.router.navigate(['/account']);
         },
         errorData => {
           console.error('(onSubmit) error:', errorData);
