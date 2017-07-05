@@ -46,7 +46,7 @@ export function cookieStrategy() {
     LoginComponent,
     LoginPageComponent,
     CalculatorComponent,
-    CalcFormComponent
+    CalcFormComponent,
   ],
   imports: [
     BrowserModule,
