@@ -6,19 +6,25 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { GraphWasteType, GraphWasteTypeDefs } from './graph-waste-type.enum';
 import { IGraph } from './igraph';
+import { IGraphRequest } from './igraph-request';
 
 @Injectable()
 export class GraphService {
-  private graphUrl = environment.apiUrl + 'calculator/calculator';
+  private graphUrl = environment.apiUrl + 'calculator';
   constructor(private http: Http) { }
-  getGraphs({ birthdays = [1980] }: {birthdays: number[]}): Observable<any> {
-    const params: URLSearchParams = new URLSearchParams();
-    birthdays
-      .forEach((year, index) => params.set(`birthdays[${index}]`, year.toString()));
-    return this.http.get(this.graphUrl, { search: params })
-      .map(this.extractData.bind(this))
-      .catch(this.handleError.bind(this));
+
+  getGraphs(req: IGraphRequest): Observable<any> {
+    const params = this.getSearchParams(req);
+    return this.http.get(`${this.graphUrl}/calculate`, { search: params })
+      .map(res => this.extractData(res))
+      .catch(err => this.handleError(err));
   }
+
+  setGraphData(req: IGraphRequest): Observable<IGraph> {
+    // Should be authenticated
+    return this.getGraphs(req);
+  }
+
   private extractData(res: Response) {
     const body = res.json();
     const graphs = {
@@ -27,6 +33,22 @@ export class GraphService {
     console.log('-----body: ', body);
     return graphs || { };
   }
+
+  private getSearchParams(req: IGraphRequest): URLSearchParams {
+    const { birthdays = [1980], privateRecycling = [] } = req;
+    const params: URLSearchParams = new URLSearchParams();
+    // TODO: bidlocode
+    birthdays
+      .forEach((year, index) => params.set(`birthdays[${index}]`, year.toString()));
+    privateRecycling
+      .forEach(({ fromYear, type, amountPerMonth }, index) => {
+        params.set(`private_recycling[${index}][from_year]`, String(fromYear));
+        params.set(`private_recycling[${index}][type]`, String(type));
+        params.set(`private_recycling[${index}][amount_per_month]`, String(amountPerMonth));
+      });
+    return params;
+  }
+
   private getWasteGraph(body): IGraph {
     const datasets = Object
       .keys(body.sum_charts)
@@ -57,9 +79,7 @@ export class GraphService {
     };
     return { datasets, labels, options };
   }
-  private serialize() {
 
-  }
   private handleError (error: Response | any) {
     let errMsg: string;
     if (error instanceof Response) {
