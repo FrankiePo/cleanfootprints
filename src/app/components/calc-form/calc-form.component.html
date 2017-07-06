@@ -4,21 +4,72 @@
       <div class="text-md-left">
         <h1 style="margin-bottom: 2rem;">Калькулятор</h1>
         <form novalidate (ngSubmit)="onSubmit(calcForm)" [formGroup]="calcForm">
-          <div class="form-group" [ngClass]="formGroupClass(calcForm, 'email')">
-            <input
-              class="form-control"
-              [ngClass]="inputClass(calcForm, 'name')"
-              type="text"
-              placeholder="Имя"
-              formControlName="name"/>
+          <div class="calc-form__main">
+            <div class="form-group">
+              <div class="form-control-label">Количество членов в семье</div>
+              <select
+                class="form-control"
+                formControlName="familyCount">
+                <option *ngFor="let count of familyCountSelect">{{ count }}</option>
+              </select>
+            </div>
+            <div class="form-group" formGroupName="birthdays">
+              <div class="form-control-label">Год рождения каждого из членов семьи</div>
+              <div class="row">
+                <div class="col-6 col-sm-4 col-lg-3" *ngFor="let count of familyCountArray">
+                  <select
+                    class="form-control"
+                    formControlName="{{count}}">
+                    <option *ngFor="let year of lastHundredYears">{{ year }}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="form-group" formGroupName="recycling">
+              <div class="form-control-label">Сколько каких отходов отправляете на переработку в среднем в месяц?</div>
+              <small class="form-control-label">Указывать только то, что сдается на переработку. Если, например, металл не сдаете на переработку или в контейнеры для раздельного сбора, то указывайте "0"</small>
+              <div class="row">
+                <div *ngFor="let type of graphTypes" class="col-sm-6">
+                  <div class="form-control-label">{{getTitle(type)}}</div>
+                  <select
+                    class="form-control"
+                    formControlName="{{ type }}">
+                    <option *ngFor="let weight of weights" [value]="weight">{{ weight }} кг/мес</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="form-control-label">Год начала сбора мусора</div>
+                <select
+                  class="form-control"
+                  formControlName="fromYear">
+                  <option *ngFor="let year of lastHundredYears">{{ year }}</option>
+                </select>
+            </div>
           </div>
-          <div class="form-group" [ngClass]="formGroupClass(calcForm, 'password')">
-            <input
-              class="form-control"
-              [ngClass]="inputClass(calcForm, 'password')"
-              type="password"
-              placeholder="Пароль"
-              formControlName="password"/>
+          <div class="calc-form__registration" *ngIf="!isLoggedIn">
+            <div class="form-group">
+              <input
+                class="form-control"
+                type="text"
+                placeholder="Имя"
+                formControlName="name"/>
+            </div>
+            <div class="form-group">
+              <input
+                class="form-control"
+                type="text"
+                placeholder="Email"
+                formControlName="email"/>
+            </div>
+            <div class="form-group">
+              <input
+                class="form-control"
+                type="password"
+                placeholder="Пароль"
+                formControlName="password"/>
+            </div>
           </div>
           <div class="form-group">
             <input type="submit" class="btn btn-primary" value="Расчитать">
