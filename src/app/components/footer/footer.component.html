@@ -4,31 +4,37 @@
       <div class="col-md-2">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link text-uppercase" href="#">Главная</a>
+            <a class="nav-link text-uppercase" routerLink="/index">Главная</a>
           </li>
           <li class="nav-item text-uppercase">
-            <a class="nav-link" href="#">Проекты</a>
+            <a class="nav-link" routerLink="/projects">Проекты</a>
           </li>
           <li class="nav-item text-uppercase">
-            <a class="nav-link" href="#">О Нас</a>
+            <a class="nav-link" routerLink="/about">О Нас</a>
           </li>
         </ul>
       </div>
       <div class="col-md-2">
         <ul class="nav flex-column justify-content-center">
           <li class="nav-item text-uppercase">
-            <a class="nav-link" href="#">Контакты</a>
+            <a class="nav-link" routerLink="/calculator">Калькулятор</a>
           </li>
-          <li class="nav-item text-uppercase">
-            <a class="nav-link" href="#">Регистрация</a>
+          <li class="nav-item text-uppercase" *ngIf="loggedIn">
+            <a class="nav-link" routerLink="/account">Личный Кабинет</a>
           </li>
-          <li class="nav-item text-uppercase">
-            <a class="nav-link" href="#">Войти</a>
+          <li class="nav-item text-uppercase" *ngIf="!loggedIn">
+            <a class="nav-link" routerLink="/signup">Регистрация</a>
+          </li>
+          <li class="nav-item text-uppercase" *ngIf="!loggedIn">
+            <a class="nav-link" routerLink="/login">Войти</a>
+          </li>
+          <li class="nav-item text-uppercase" *ngIf="loggedIn">
+            <a class="nav-link" (click)="logout()">Выйти</a>
           </li>
         </ul>
       </div>
       <div class="col-md-4 text-md-center">
-        <a class="navbar-brand" href="/">
+        <a class="navbar-brand" routerLink="/">
           <img src="assets/img/logo.png" alt="logo" style="height:100px;"/>
         </a>
       </div>
