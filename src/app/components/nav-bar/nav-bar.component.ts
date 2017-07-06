@@ -21,6 +21,6 @@ export class NavBarComponent implements OnInit, OnDestroy {
     this.subscribtion.unsubscribe();
   }
   logout() {
-    this.userService.logout();
+    this.userService.logout().subscribe(_ => this.loggedIn = false);
   }
 }
