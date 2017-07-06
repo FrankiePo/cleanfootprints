@@ -3,6 +3,9 @@
   width: 100%;
   z-index: 1030;
 }
+.toggler::after {
+  content: none !important;
+}
 .active {
   border-bottom: 2px solid white;
 }
