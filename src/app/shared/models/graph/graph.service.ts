@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, URLSearchParams } from '@angular/http';
+import { Http, RequestOptions, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { environment } from '../../../../environments/environment';
 import 'rxjs/add/operator/map';
@@ -11,11 +11,26 @@ import { IGraphRequest } from './igraph-request';
 @Injectable()
 export class GraphService {
   private graphUrl = environment.apiUrl + 'calculator';
+  private requestOptions = new RequestOptions({
+    headers: new Headers({
+      'Content-Type': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest',
+    }),
+    withCredentials: true,
+  });
   constructor(private http: Http) { }
 
-  getGraphs(req: IGraphRequest): Observable<any> {
-    const params = this.getSearchParams(req);
-    return this.http.get(`${this.graphUrl}/calculate`, { search: params })
+  getGraphs(req: IGraphRequest): Observable<IGraph> {
+    const { birthdays = [1980], privateRecycling = [] } = req;
+    // TODO: there is probably a better way
+    const private_recycling = privateRecycling.map(
+      ({fromYear, type, amountPerMonth}) => ({
+        from_year: fromYear,
+        type: type,
+        amount_per_month: amountPerMonth,
+      }));
+    const body = JSON.stringify({ birthdays, private_recycling });
+    return this.http.post(`${this.graphUrl}/calculate/`, body, this.requestOptions)
       .map(res => this.extractData(res))
       .catch(err => this.handleError(err));
   }
@@ -32,21 +47,6 @@ export class GraphService {
     };
     console.log('-----body: ', body);
     return graphs || { };
-  }
-
-  private getSearchParams(req: IGraphRequest): URLSearchParams {
-    const { birthdays = [1980], privateRecycling = [] } = req;
-    const params: URLSearchParams = new URLSearchParams();
-    // TODO: bidlocode
-    birthdays
-      .forEach((year, index) => params.set(`birthdays[${index}]`, year.toString()));
-    privateRecycling
-      .forEach(({ fromYear, type, amountPerMonth }, index) => {
-        params.set(`private_recycling[${index}][from_year]`, String(fromYear));
-        params.set(`private_recycling[${index}][type]`, String(type));
-        params.set(`private_recycling[${index}][amount_per_month]`, String(amountPerMonth));
-      });
-    return params;
   }
 
   private getWasteGraph(body): IGraph {
