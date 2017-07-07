@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
       email: ['', [Validators.required]],
       password: ['', [Validators.required]],
     });
+    this.errorData = {};
     this.loginForm.get('email').valueChanges.subscribe((value) => {
       this.errorData.email = null;
     });
