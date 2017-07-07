@@ -67,7 +67,6 @@ export class CalcFormComponent implements OnInit {
         [GraphWasteType.TEXTILE]: '0',
         [GraphWasteType.FOOD]   : '0',
         [GraphWasteType.OTHER]  : '0',
-        [GraphWasteType.TOTAL]  : '0',
       }),
       fromYear: '2017'
     });
