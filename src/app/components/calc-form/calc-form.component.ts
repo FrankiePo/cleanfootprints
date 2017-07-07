@@ -82,7 +82,7 @@ export class CalcFormComponent implements OnInit {
     const birthdays = Object
       .values(form.get('birthdays').value)
       .map(Number)
-      .slice(Number(form.get('familyCount').value));
+      .slice(0, Number(form.get('familyCount').value));
     const fromYear = Number(form.get('fromYear').value);
     const privateRecycling = Object
       .entries(form.get('recycling').value)
