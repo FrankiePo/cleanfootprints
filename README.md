@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/FrankiePo/cleanfootprints.svg?branch=master)](https://travis-ci.org/FrankiePo/cleanfootprints)
+[![Build Status](https://travis-ci.com/FrankiePo/cleanfootprints.svg?token=5ynj6iPqSSujwZyPu4br&branch=master)](https://travis-ci.com/FrankiePo/cleanfootprints)
 [![Dependency Status](https://img.shields.io/david/FrankiePo/cleanfootprints.svg?style=flat-square)](https://david-dm.org/FrankiePo/cleanfootprints)
 [![devDependency Status](https://img.shields.io/david/dev/FrankiePo/cleanfootprints.svg?style=flat-square)](https://david-dm.org/FrankiePo/cleanfootprints#info=devDependencies)
 
